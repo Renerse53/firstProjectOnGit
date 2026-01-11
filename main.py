@@ -167,7 +167,7 @@ async def get_all_recepie(
 
 
 #recepies for id
-@app.get("/recepies/{recipe_id}")
+@app.get("/recepies/{recipe_id}") #Returns an error (does not work)
 async def get_recepie(recipe_id: str):
     for recipe in recepies_db:
         if recipe.id == recipe_id:
@@ -177,7 +177,7 @@ async def get_recepie(recipe_id: str):
 
 
 #add recepies
-@app.post("/recepies", response_model=Recepies)
+@app.post("/recepies", response_model=Recepies) # and this
 async def create_recipie(recipe_data: CreateRecept):
     recipe_id = str(uuid.uuid4())
 
@@ -191,7 +191,7 @@ async def create_recipie(recipe_data: CreateRecept):
     return new_recipe
 
 #search yhe recept
-@app.get("/recipie/search")
+@app.get("/recipie/search") #work on 50%
 async def search_recepie(q: str):
     result = []
     q_lower = q.lower()
@@ -234,6 +234,7 @@ async def like_recepie(recipe_id: str):
         raise HTTPException (status_code=404, detail="Recipe is not found")
 
     #good job
+
 
 
 
